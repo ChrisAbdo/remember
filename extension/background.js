@@ -45,7 +45,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         url: tab.url,
         title: tab.title,
       };
-
+      //
       fetch("http://localhost:3000/api/save-highlight", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
