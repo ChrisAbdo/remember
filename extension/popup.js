@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chrome.storage.sync.get("userId", ({ userId }) => {
     if (userId) {
-      statusDiv.textContent = "Account linked successfully.";
-      userIdForm.style.display = "none";
+      verifyUserId(userId);
     }
   });
 
@@ -14,10 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const userId = userIdInput.value.trim();
     if (userId) {
-      chrome.storage.sync.set({ userId }, () => {
-        statusDiv.textContent = "Account linked successfully.";
-        userIdForm.style.display = "none";
-      });
+      verifyUserId(userId);
     }
   });
+
+  function verifyUserId(userId) {
+    fetch("https://your-backend-url/api/verify-user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          statusDiv.textContent = data.error;
+        } else {
+          statusDiv.textContent = `Account linked successfully. Welcome, ${data.name}!`;
+          chrome.storage.sync.set({ userId });
+          userIdForm.style.display = "none";
+        }
+      })
+      .catch((error) => {
+        statusDiv.textContent = "Error verifying user.";
+        console.error("Error verifying user:", error);
+      });
+  }
 });
