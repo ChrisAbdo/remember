@@ -27,9 +27,8 @@ export async function POST(req: NextRequest) {
   try {
     const highlight = await prisma.project.create({
       data: {
-        //   @ts-ignore
-        userId,
         url,
+        authorId: userId,
       },
     });
     return NextResponse.json(highlight, {

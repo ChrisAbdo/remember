@@ -46,7 +46,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         title: tab.title,
       };
       //
-      fetch("http://localhost:3000/api/save-highlight", {
+      fetch("https://remember-delta.vercel.app/api/save-highlight", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(highlight),
