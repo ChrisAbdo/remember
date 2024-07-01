@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function verifyUserId(userId) {
-    fetch("https://your-backend-url/api/verify-user", {
+    fetch("https://remember-delta.vercel.app/api/verify-user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
