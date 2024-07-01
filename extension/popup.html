@@ -1,23 +1,20 @@
 <html>
   <head>
-    <title>Saved Highlights</title>
+    <title>Text Highlighter</title>
     <style>
       body {
         width: 300px;
         padding: 10px;
       }
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-      li {
-        margin-bottom: 5px;
-      }
     </style>
   </head>
   <body>
-    <h2>Head over to LINK to see your saved highlights!</h2>
-    <ul id="savedTextsList"></ul>
+    <h2>Enter your User ID</h2>
+    <form id="userIdForm">
+      <input type="text" id="userIdInput" placeholder="Enter your User ID" />
+      <button type="submit">Link Account</button>
+    </form>
+    <div id="status"></div>
     <script src="popup.js"></script>
   </body>
 </html>

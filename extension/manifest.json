@@ -3,7 +3,7 @@
   "name": "Text Highlighter",
   "description": "Highlight and save text from web pages",
   "version": "1.0",
-  "permissions": ["contextMenus", "storage"],
+  "permissions": ["contextMenus", "storage", "identity"],
   "background": {
     "service_worker": "background.js"
   },
