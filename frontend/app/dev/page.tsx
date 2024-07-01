@@ -21,6 +21,7 @@ export default async function HighlightsPage() {
         </ul>
       ) : (
         <p>No highlights found.</p>
+        //
       )}
     </div>
   );
