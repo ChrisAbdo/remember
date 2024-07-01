@@ -13,17 +13,15 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         console.error("User not authenticated");
         return;
       }
-      const highlight = {
-        text: info.selectionText,
+      const remember = {
         userId: userId,
         url: info.selectionText,
-        title: tab.title,
       };
       //
       fetch("https://remember-delta.vercel.app/api/save-highlight", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(highlight),
+        body: JSON.stringify(remember),
       })
         .then((response) => response.json())
         .then((data) => console.log("Highlight saved:", data))

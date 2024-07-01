@@ -8,8 +8,13 @@ export default async function HighlightsPage() {
     where: { authorId: session?.user?.id },
   });
 
+  if (!session) {
+    return <p>You need to be logged in to view this page.</p>;
+  }
+
   return (
     <div>
+      {session.user.id}
       <h1>Your Highlights</h1>
       {projects.length > 0 ? (
         <ul>

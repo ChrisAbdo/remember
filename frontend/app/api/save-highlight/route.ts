@@ -15,9 +15,9 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: NextRequest) {
-  const { text, userId, url, title } = await req.json();
+  const { userId, url } = await req.json();
 
-  if (!text || !userId || !url || !title) {
+  if (!userId || !url) {
     return NextResponse.json(
       { error: "Missing required fields" },
       { status: 400 }
@@ -35,6 +35,8 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
     });
   } catch (error) {
@@ -44,6 +46,8 @@ export async function POST(req: NextRequest) {
         status: 500,
         headers: {
           "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
         },
       }
     );
