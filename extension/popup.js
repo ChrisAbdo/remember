@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const userIdForm = document.getElementById("userIdForm");
   const userIdInput = document.getElementById("userIdInput");
   const statusDiv = document.getElementById("status");
+  const resetButton = document.getElementById("resetButton");
 
   chrome.storage.sync.get("userId", ({ userId }) => {
     if (userId) {
@@ -15,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userId) {
       verifyUserId(userId);
     }
+  });
+
+  resetButton.addEventListener("click", () => {
+    chrome.storage.sync.remove("userId", () => {
+      statusDiv.textContent = "Account reset successfully.";
+      userIdForm.style.display = "block";
+      userIdInput.value = "";
+    });
   });
 
   function verifyUserId(userId) {
