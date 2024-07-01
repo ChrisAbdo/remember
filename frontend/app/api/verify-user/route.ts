@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   if (!userId) {
     return NextResponse.json({ error: "Missing user ID" }, { status: 400 });
   }
-
+  //
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
